@@ -1,0 +1,15 @@
+<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#0d1426"><title>PERSONA CLASH 実機診断</title><style>:root{font-family:-apple-system,BlinkMacSystemFont,sans-serif;color:#eaf6ff;background:#0d1426}body{max-width:600px;margin:auto;padding:18px;line-height:1.6}h1{font-size:21px}h2{font-size:16px;margin-top:22px}section{padding:12px;border:1px solid #406078;border-radius:12px;margin:10px 0}button,a{display:inline-block;border:1px solid #5b99b5;background:#17334d;color:#fff;padding:10px 14px;border-radius:8px;font-size:15px}pre{white-space:pre-wrap;overflow-wrap:anywhere;font-size:12px}small{color:#b3c6d9}</style></head><body><h1>PERSONA CLASH 実機診断 · Stage 30</h1><p>このページはセーブデータを変更しません。診断結果にはブラウザの状態のみ表示します。</p><section><h2>診断結果</h2><pre id="result">診断中…</pre><button id="retry">再診断</button> <button id="copy">結果をコピー</button></section><section><h2>オフライン確認</h2><p>ホーム画面に追加したゲームを一度開いてから、機内モードで閉じて再起動。ゲームが開くか確認してください。</p><p><small>navigator.onLine の値だけでは実際のオフライン動作を証明できません。</small></p><a href="./index.html">ゲームに戻る</a></section><script>
+async function check(){const lines=[];function add(k,v){lines.push(k+': '+v)}
+add('URL方式',location.protocol);add('画面サイズ',innerWidth+'×'+innerHeight);add('画面倍率',devicePixelRatio);
+add('表示形式',matchMedia('(display-mode: standalone)').matches||navigator.standalone?'ホーム画面アプリ':'ブラウザ');
+add('ブラウザのオンライン申告',navigator.onLine?'オンライン':'オフライン');
+add('Service Worker API',('serviceWorker' in navigator)?'対応':'非対応');
+if('serviceWorker' in navigator){try{const reg=await navigator.serviceWorker.getRegistration('./');add('オフライン登録',reg&&reg.active?'登録済み':'未登録／処理中');add('SW制御中',navigator.serviceWorker.controller?'はい':'いいえ（初回は再読込後）')}catch(e){add('オフライン登録','確認失敗: '+e.message)}}
+try{const keys=await caches.keys();add('オフラインキャッシュ',keys.filter(x=>x.startsWith('persona-clash-')).join(', ')||'なし')}catch(e){add('キャッシュ確認','不可: '+e.message)}
+try{const k='pc-stage30-storage-test';localStorage.setItem(k,'ok');add('保存の書込/読込',localStorage.getItem(k)==='ok'?'成功':'失敗');localStorage.removeItem(k);add('ゲームセーブの存在',localStorage.getItem('persona-clash-tactical-mind-v02')?'あり':'なし')}catch(e){add('保存テスト','失敗: '+e.message)}
+add('ページ縦はみ出し',document.documentElement.scrollHeight>innerHeight?'あり（診断ページはスクロール可）':'なし');
+add('iOS版',navigator.userAgent.match(/OS (\d+[_\d]*)/)?.[1]?.replaceAll('_','.')||'判別不可');
+add('診断日時',new Date().toLocaleString('ja-JP'));document.getElementById('result').textContent=lines.join('\n')}
+document.getElementById('retry').onclick=check;
+document.getElementById('copy').onclick=async()=>{const t=document.getElementById('result').textContent;try{await navigator.clipboard.writeText(t);alert('コピーしました')}catch(e){prompt('結果をコピーしてください',t)}};
+check();</script></body></html>
