@@ -1,0 +1,261 @@
+<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,viewport-fit=cover"><meta name="theme-color" content="#0d1426"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><link rel="manifest" href="./manifest.webmanifest"><link rel="apple-touch-icon" href="./icon-180.png"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="PERSONA CLASH"><title>PERSONA CLASH · TACTICAL MIND</title><style>
+:root{color-scheme:dark;font-family:-apple-system,BlinkMacSystemFont,'Hiragino Kaku Gothic ProN',sans-serif;background:#0d1426;color:#edf2ff}*{box-sizing:border-box}body{margin:0;overflow:hidden}button,input{font:inherit}button{cursor:pointer;touch-action:manipulation}#app{height:100dvh;max-height:100dvh;display:flex;flex-direction:column;overflow:hidden;padding:env(safe-area-inset-top) 10px env(safe-area-inset-bottom);max-width:520px;margin:auto}header{height:42px;flex-shrink:0;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #303a55}header strong{font-size:15px;letter-spacing:1.5px}header small{font-size:10px;color:#a4b8df}.tabs{display:flex;gap:5px;padding:6px 0;flex-shrink:0}.tabs button{flex:1;font-size:10px;padding:8px 2px;border:1px solid #394763;border-radius:9px;background:#1b2940;color:#bdcce5}.tabs button.on{background:#4669b2;color:white;border-color:#86a6e7}main{flex:1;min-height:0;overflow:hidden}.screen{display:none;height:100%;min-height:0;flex-direction:column;gap:7px}.screen.on{display:flex}#solo .panel.grow{overflow:hidden}#solo .choice button{padding:8px 3px}#solo .notice{font-size:10px}.panel{background:#17243a;border:1px solid #334663;border-radius:13px;padding:10px;min-height:0}.label{font-size:11px;color:#9db2d4}.title{font-size:15px;font-weight:750}.muted{font-size:11px;color:#a4b6d4;line-height:1.45}.btn{background:#355c9d;color:#fff;border:1px solid #6b93d7;border-radius:10px;padding:10px;font-size:12px;font-weight:700}.btn:disabled{opacity:.35}.secondary{background:#24344e;border-color:#465a7b}.accent{color:#83e2d0}.row{display:flex;align-items:center;justify-content:space-between;gap:7px}.grow{flex:1;min-height:0}.avatarRow{display:flex;gap:8px;flex:1;min-height:0}.portrait{width:50%;min-height:0;background:radial-gradient(circle at 50% 40%,#34537a,#142137 72%);border:1px solid #405476;border-radius:12px;overflow:hidden;display:flex;align-items:center;justify-content:center}.portrait svg{width:100%;height:100%;max-height:210px}.stat{font-size:11px}.meter{height:7px;border-radius:6px;background:#3b4258;overflow:hidden;margin-top:4px}.meter i{display:block;height:100%;background:#6be0c0}.enemy .meter i{background:#f28a9a}.actions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px}.actions button{text-align:left;min-height:53px;border:1px solid #485c80;border-radius:10px;background:#22344f;color:white;padding:8px}.actions button.selected{background:#345d88;border-color:#81d9ec}.actions button:disabled{opacity:.28}.actions b{font-size:12px}.actions small{display:block;font-size:10px;color:#bac8e0;margin-top:3px}.log{font-size:11px;line-height:1.4;min-height:34px;max-height:55px;overflow:hidden;color:#d3def2}.choice{display:grid;grid-template-columns:1fr 1fr;gap:7px}.choice button{padding:11px 5px;background:#243752;color:white;border:1px solid #526587;border-radius:10px;font-size:12px}.choice button.chosen{border-color:#83e2d0;background:#315f67}.partRow{display:flex;gap:5px;flex-wrap:wrap}.partRow button{font-size:10px;padding:7px;border:1px solid #536887;border-radius:8px;color:#e6edfc;background:#243751}.partRow button.chosen{background:#4b6a9b;border-color:#91c9ff}.fit{overflow:hidden}.tiny{font-size:10px}.notice{background:#2b3650;border-radius:8px;padding:7px;font-size:11px}.stack{display:flex;flex-direction:column;gap:7px}.progress{display:flex;gap:4px}.progress i{flex:1;height:5px;background:#344763;border-radius:4px}.progress i.done{background:#69c7b4}@media(max-height:700px){header{height:33px}.tabs{padding:4px 0}.tabs button{padding:5px 2px}.screen{gap:4px}.panel{padding:7px}.portrait svg{max-height:140px}.actions button{min-height:43px;padding:5px}.log{min-height:26px;max-height:35px}.btn{padding:7px}}@media(max-height:580px){.portrait svg{max-height:100px}.muted{font-size:10px}.actions button{min-height:38px}}@media(max-width:340px){.actions button{padding:5px}.actions small{font-size:9px}}
+@media(max-height:720px){header{height:32px}.tabs{padding:3px 0}.screen{gap:4px}.avatarRow{min-height:0}.portrait{max-height:22dvh}.panel{padding:5px}.actions{gap:4px}.actions button{padding:5px 2px}}#tacticalPanel{font-size:10px;line-height:1.35;padding:6px 8px}#tacticalPanel .muted{font-size:10px}@media(max-height:620px){#character .partRow button{padding:4px;font-size:9px}#character .panel{padding:5px}#character .avatarRow{gap:4px}#character .portrait svg{max-height:110px}} 
+/* Stage 6: safe-area, finger targets, compact no-page-scroll */
+html,body{height:100%;overscroll-behavior:none}button{touch-action:manipulation;-webkit-tap-highlight-color:transparent}button:focus-visible{outline:2px solid #a4f4e4;outline-offset:2px}.tabs button{min-height:36px}#battle .actions button{min-height:44px}#battle .row>.btn{min-height:40px}#records{overflow:hidden;overscroll-behavior:none}#records::-webkit-scrollbar{display:none}#records .panel{flex-shrink:0}#replayPanel .row .btn{min-height:34px;padding:6px 9px}#solo .panel{flex-shrink:0}#solo .panel.grow{min-height:0}@media(max-height:690px){#battle .avatarRow{max-height:17dvh}#battle .actions button{min-height:39px}#battle .actions small{display:none}#battle .panel{padding:4px 6px}#battle .screen{gap:3px}#battle .log{max-height:30px}#character .portrait{max-height:25dvh}#records .panel{padding:6px}}@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+#records .panel{overflow:hidden}#records .panel:not(.recordActive){display:none!important}#recordPager{flex-shrink:0;display:flex;align-items:center;justify-content:space-between;gap:8px;padding:4px}#recordPager button{min-height:40px;min-width:64px}#records .panel.recordActive{flex:1;min-height:0;overflow:hidden}#records .panel.recordActive .stack{overflow:hidden}@media(max-height:620px){#records .panel.recordActive{font-size:11px}#records .panel.recordActive .btn{padding:5px}}
+@media(max-height:620px){#collectionInfo{display:none}#solo .panel.grow{padding:4px 6px}#solo .panel.grow .title{font-size:12px}#solo .panel.grow .notice{padding:4px;font-size:9px}#solo .panel.grow .btn{padding:4px}} </style></head><body><div id="app"><header><strong>PERSONA <span class="accent">CLASH</span></strong><small>TACTICAL MIND · OFFLINE v0.9.23 · 心理戦</small></header><nav class="tabs" aria-label="画面切替"><button data-tab="diagnosis">診断</button><button data-tab="character">キャラ</button><button data-tab="battle">対戦</button><button data-tab="records">記録</button><button data-tab="solo">挑戦</button></nav><main>
+<section id="diagnosis" class="screen"><div class="panel"><div class="row"><span class="title">性格診断</span><span id="qCount" class="label"></span></div><p class="muted">6つの選択から傾向を推定。医学的・心理学的な正式検査ではありません。</p><div class="progress" id="qProgress"></div></div><div class="panel grow stack" style="justify-content:center"><div class="title" id="question"></div><div class="choice" id="answers"></div></div><button class="btn secondary" id="qBack">前の質問へ</button></section>
+<section id="character" class="screen"><div class="panel row"><div><div class="title" id="className"></div><div class="muted" id="classDesc"></div></div><div class="stat" id="level"></div></div><div class="avatarRow"><div class="portrait" id="heroArt"></div><div class="panel grow stack" style="justify-content:space-around"><div><div class="label">後髪</div><div class="partRow" id="hairOpts"></div></div><div><div class="label">衣装</div><div class="partRow" id="coatOpts"></div></div><div><div class="label">頭装備</div><div class="partRow" id="gearOpts"></div></div><div><div class="label">前髪・目</div><div class="partRow" id="faceOpts"></div></div><div><div class="label">カラー</div><div class="partRow" id="colorOpts"></div></div></div></div><div class="panel"><div class="label">性格限定パーツの解放条件</div><div id="unlockInfo" class="muted"></div></div><button class="btn" data-go="battle">このキャラで戦う</button></section>
+<section id="battle" class="screen"><div class="panel row"><div class="stat">自分 <b id="pHp"></b><div class="meter"><i id="pBar"></i></div></div><div class="label" id="turnLabel"></div><div class="stat enemy">CPU <b id="eHp"></b><div class="meter"><i id="eBar"></i></div></div></div><div class="avatarRow"><div class="portrait" id="battleHero"></div><div class="portrait enemy" id="battleEnemy"></div></div><div class="panel"><div class="row"><b class="tiny" id="resources"></b><span class="label" id="enemyIntent"></span></div><div class="muted" id="battleHint"></div></div><div class="panel" id="tacticalPanel" aria-live="polite"></div><div class="actions" id="battleActions"></div><div class="panel log" aria-live="polite" id="battleLog"></div><div class="row"><button class="btn secondary" id="undo" style="flex:1">選択解除</button><button class="btn" id="commit" style="flex:2">行動を実行</button><button class="btn secondary" id="restart" style="flex:1">再戦</button></div></section>
+<section id="records" class="screen"><div id="recordPager"><button class="btn secondary" id="recordPrev">◀ 前</button><span id="recordPageLabel" class="label">記録</span><button class="btn secondary" id="recordNext">次 ▶</button></div><div class="panel stack"><div class="title">プレイ記録と育成</div><div id="stats" class="muted"></div><div id="achievements" class="muted"></div></div><div class="panel stack" id="skillPanel"><div class="title">育成ビルド・スキルツリー</div><div class="muted" id="skillSummary"></div><div id="skillChoices" class="partRow"></div><div class="row"><button class="btn secondary" id="skillReset">育成リセット</button><button class="btn secondary" id="skillSave">ビルド保存</button></div><div id="skillBuilds" class="partRow"></div></div><div class="panel grow stack"><div class="title">戦術プリセット</div><div class="muted">3AP以内の戦術を対戦画面で組み、ここに保存できます。</div><div id="presets" class="stack"></div><button class="btn secondary" id="savePreset">現在の戦術をプリセットに保存</button></div><div class="panel stack" id="replayPanel"><div class="row"><div class="title">戦闘リプレイ・分析</div><button class="btn secondary" id="replayExport">ログ出力</button></div><div id="replaySummary" class="muted"></div><div class="row"><button class="btn secondary" id="replayPrev">◀ 前</button><span class="tiny" id="replayPosition">0/0</span><button class="btn secondary" id="replayNext">次 ▶</button></div><div id="replayDetail" class="notice" aria-live="polite"></div></div><div class="panel stack"><div class="label">データ管理</div><div class="row"><button class="btn secondary" id="export">セーブ書き出し</button><button class="btn secondary" id="import">セーブ読み込み</button><input type="file" id="importFile" accept=".json,application/json" hidden></div><button class="btn secondary" id="reset">最初からやり直す</button><div class="muted" id="storageStatus"></div></div></section>
+<section id="solo" class="screen"><div class="panel"><div class="title">SOLO LAB · 挑戦と収集</div><div class="muted">抽選なし。戦術の達成条件で外見パーツを獲得。</div></div><div class="panel stack"><div class="title">戦術パズル</div><div class="muted" id="puzzleInfo"></div><div class="choice" id="puzzleChoices"></div><div class="notice" id="puzzleFeedback" aria-live="polite">正しい戦術を選択してください。</div></div><div class="panel stack"><div class="title">CPUチャレンジ</div><div class="muted" id="challengeInfo"></div><div class="choice"><button id="challengeStart">次の相手と対戦</button><button id="challengeReset">連戦をリセット</button></div></div><div class="panel grow stack"><div class="title">装備図鑑</div><div class="muted" id="collectionInfo"></div><div id="collectionItems" class="stack"></div><div class="row"><button class="btn secondary" id="collectionPrev">◀</button><span id="collectionPage" class="tiny"></span><button class="btn secondary" id="collectionNext">▶</button></div></div><button class="btn secondary" data-go="character">キャラ編集へ</button></section></main></div><script>
+
+'use strict';
+const KEY='persona-clash-tactical-mind-v02';const TYPES=[{id:'analysis',name:'分析型',color:'#83dce5',desc:'先読みと情報戦を得意とする',gear:'予測ゴーグル',unlock:'解析を通算5回使用'},{id:'intuition',name:'直感型',color:'#f3a17e',desc:'攻勢の連鎖で主導権を握る',gear:'閃光バイザー',unlock:'攻撃を通算8回使用'},{id:'empathy',name:'共感型',color:'#b3a0f7',desc:'守りと回復から逆転する',gear:'共鳴マント',unlock:'防御を通算5回使用'},{id:'will',name:'意志型',color:'#e8ca83',desc:'蓄積した集中力で突破する',gear:'不屈の仮面',unlock:'突破を通算4回使用'}];
+const QUESTIONS=[['難題を前にしたら？','情報を集める','まず試す','相談する','最後まで粘る'],['勝負で重視するのは？','予測の精度','行動の速さ','相手の意図','持久力'],['失敗した時は？','原因を分析','別案を即実行','周囲と話す','反復練習'],['理想の能力は？','先を読む','瞬時に動く','気持ちを察する','耐え抜く'],['未知の場所では？','地図を確認','飛び込む','仲間を探す','着実に進む'],['対戦で得意なのは？','情報戦','速攻','防衛','逆転']];
+const ACT=[{id:'attack',name:'攻撃',ap:2,detail:'15ダメージ',desc:'確定15ダメージ'},{id:'focus',name:'集中',ap:1,detail:'集中+2 / 防御併用時+1',desc:'集中力+2（防御と併用すると+1）'},{id:'scan',name:'解析',ap:1,detail:'次ターン攻撃+2',desc:'敵の次の行動候補を絞る'},{id:'guard',name:'防御',ap:1,detail:'軽減11 / 連続使用で低下',desc:'被ダメージ軽減11（連続防御で疲労、突破は貫通）'},{id:'break',name:'突破',ap:3,detail:'集中3消費 / 43ダメージ',desc:'集中3を消費して43ダメージ'},{id:'heal',name:'回復',ap:2,detail:'HP+13',desc:'HPを13回復'},{id:'feint',name:'フェイント',ap:1,detail:'次の攻撃+3',desc:'次のターンの攻撃+3'},{id:'counter',name:'迎撃',ap:2,detail:'反撃18〜20＋被害軽減4',desc:'敵の攻撃・突破時に18〜20反撃し、受けるダメージを4軽減。連続使用で反撃力が低下。攻撃されなければ不発'}];
+function initial(){return {answers:[],type:0,parts:{hair:0,coat:0,gear:0,face:0,color:0},unlocked:false,counts:{attack:0,scan:0,guard:0,break:0},wins:0,losses:0,draws:0,xp:0,presets:[],skillPath:0,skillBuilds:[],solo:{puzzles:[],streak:0,best:0,medals:[]},battle:null}};
+let s=initial(),tab='diagnosis',picked=[];
+const ACTION_IDS=ACT.map(a=>a.id),COUNT_IDS=['attack','scan','guard','break','focus','heal','feint','counter'];
+function plainObject(x){return x!==null&&typeof x==='object'&&!Array.isArray(x)}
+function valid(x){return plainObject(x)&&Array.isArray(x.answers)&&x.answers.length<=6&&x.answers.every(a=>Number.isInteger(a)&&a>=0&&a<4)&&Number.isInteger(x.type)&&x.type>=0&&x.type<4&&plainObject(x.parts)&&plainObject(x.counts)&&Number.isFinite(x.xp)&&x.xp>=0&&x.xp<1e7&&Array.isArray(x.presets)&&x.presets.length<=4&&x.presets.every(p=>Array.isArray(p)&&p.length<=3&&p.every(a=>ACTION_IDS.includes(a)))&&(!('skillPath' in x)||(Number.isInteger(x.skillPath)&&x.skillPath>=0&&x.skillPath<3))&&(!('skillBuilds' in x)||(Array.isArray(x.skillBuilds)&&x.skillBuilds.length<=3&&x.skillBuilds.every(i=>Number.isInteger(i)&&i>=0&&i<3)))&&['hair','coat','gear','face','color'].every(k=>Number.isInteger(x.parts[k])&&x.parts[k]>=0&&x.parts[k]<=2)}
+function safeHistory(h){return plainObject(h)&&Number.isInteger(h.turn)&&h.turn>=1&&h.turn<=24&&Array.isArray(h.player)&&h.player.length<=3&&h.player.every(id=>ACTION_IDS.includes(id))&&ACTION_IDS.includes(h.cpu)&&(!('cpuActions' in h)||(Array.isArray(h.cpuActions)&&h.cpuActions.length<=3&&h.cpuActions.every(id=>ACTION_IDS.includes(id))))&&Number.isFinite(h.dealt)&&h.dealt>=0&&h.dealt<=100&&Number.isFinite(h.taken)&&h.taken>=0&&h.taken<=100}
+function safeSavedBattle(b){return plainObject(b)&&['hp','ehp','focus','efocus','turn'].every(k=>Number.isInteger(b[k]))&&b.hp>=0&&b.hp<=100&&b.ehp>=0&&b.ehp<=100&&b.focus>=0&&b.focus<=9&&b.efocus>=0&&b.efocus<=9&&b.turn>=1&&b.turn<=25&&typeof b.over==='boolean'&&Array.isArray(b.history)&&b.history.length<=24&&b.history.every(safeHistory)&&(!('matchIndex' in b)||(Number.isInteger(b.matchIndex)&&b.matchIndex>=0&&b.matchIndex<=1000000))}
+function nonnegativeInt(v,limit=1000000){return Number.isSafeInteger(v)&&v>=0&&v<=limit?v:0}
+function sanitizeState(v){
+ const base=initial(),x={...base};
+ x.answers=[...v.answers];x.type=v.type;x.parts={...base.parts,...Object.fromEntries(Object.keys(base.parts).map(k=>[k,v.parts[k]]))};
+ x.unlocked=v.unlocked===true;x.xp=v.xp;
+ x.wins=nonnegativeInt(v.wins);x.losses=nonnegativeInt(v.losses);x.draws=nonnegativeInt(v.draws);x.matchCount=nonnegativeInt(v.matchCount);
+ x.counts=Object.fromEntries(COUNT_IDS.map(k=>[k,nonnegativeInt(v.counts[k])]));
+ x.presets=v.presets.filter(p=>p.length&&legalActions(p,9)).map(p=>[...p]);
+ x.skillPath=Number.isInteger(v.skillPath)&&v.skillPath>=0&&v.skillPath<=2?v.skillPath:0;
+ x.skillBuilds=Array.isArray(v.skillBuilds)?v.skillBuilds.filter(i=>Number.isInteger(i)&&i>=0&&i<3).slice(0,3):[];
+ const solo=plainObject(v.solo)?v.solo:{};
+ x.solo={puzzles:Array.isArray(solo.puzzles)?[...new Set(solo.puzzles.filter(i=>Number.isInteger(i)&&i>=0&&i<3))]:[],streak:nonnegativeInt(solo.streak,999),best:nonnegativeInt(solo.best,999),medals:Array.isArray(solo.medals)?[...new Set(solo.medals.filter(i=>i==='triple'))]:[]};
+ x.solo.best=Math.max(x.solo.best,x.solo.streak);
+ x.battle=safeSavedBattle(v.battle)?JSON.parse(JSON.stringify(v.battle)):null;
+ if(x.battle){let b=x.battle;b.combo=nonnegativeInt(b.combo,2);b.marked=nonnegativeInt(b.marked,1);b.feint=nonnegativeInt(b.feint,1);b.initiative=Number.isInteger(b.initiative)?Math.max(-3,Math.min(3,b.initiative)):0;b.scan=!!b.scan;b.challenge=b.challenge===true;b.matchIndex=nonnegativeInt(b.matchIndex);b.log=typeof b.log==='string'?b.log.slice(0,250):'';b.outcome=b.over&&['win','loss','draw'].includes(b.outcome)?b.outcome:null;}
+ x.lastReplay=plainObject(v.lastReplay)&&Array.isArray(v.lastReplay.history)&&v.lastReplay.history.length<=24&&v.lastReplay.history.every(safeHistory)&&Number.isInteger(v.lastReplay.finalHp)&&v.lastReplay.finalHp>=0&&v.lastReplay.finalHp<=100&&Number.isInteger(v.lastReplay.finalEnemyHp)&&v.lastReplay.finalEnemyHp>=0&&v.lastReplay.finalEnemyHp<=100?JSON.parse(JSON.stringify(v.lastReplay)):null;
+ if(!x.unlocked&&x.parts.gear===2)x.parts.gear=0;
+ return x;
+}
+function loadSaveObject(v){if(!valid(v))throw Error('データ形式が不正です');return sanitizeState(v)}
+try{let raw=localStorage.getItem(KEY);if(raw)s=loadSaveObject(JSON.parse(raw))}catch(e){}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(s));let node=document.getElementById('storageStatus');if(node)node.textContent='端末内に保存済み';return true}catch(e){let node=document.getElementById('storageStatus');if(node)node.textContent='保存できません。記録画面から書き出してください';return false}}
+function importSave(v){const next=loadSaveObject(v),old=s;try{localStorage.setItem(KEY,JSON.stringify(next));s=next;picked=[];return true}catch(e){s=old;throw Error('端末に保存できません。空き容量やプライベートモードを確認してください')}}
+function el(id){return document.getElementById(id)}function show(t){tab=t;document.querySelectorAll('.screen').forEach(x=>x.classList.toggle('on',x.id===t));document.querySelectorAll('[data-tab]').forEach(x=>x.classList.toggle('on',x.dataset.tab===t));render()}
+document.querySelectorAll('[data-tab]').forEach(b=>b.onclick=()=>show(b.dataset.tab));document.querySelectorAll('[data-go]').forEach(b=>b.onclick=()=>show(b.dataset.go));
+function type(){return TYPES[s.type]}function completed(){return s.answers.length===QUESTIONS.length}function score(){let z=[0,0,0,0];s.answers.forEach(a=>z[a]++);return z.indexOf(Math.max(...z))}
+function renderQuiz(){let q=s.answers.length;el('qCount').textContent=q+'/6';el('qProgress').innerHTML=QUESTIONS.map((_,i)=>`<i class="${i<q?'done':''}"></i>`).join('');el('qBack').disabled=q===0;if(q===6){el('question').textContent='診断完了：'+type().name;el('answers').innerHTML='<button id="seeChar">キャラを確認する</button><button id="redoQuiz">再診断する</button>';el('seeChar').onclick=()=>show('character');el('redoQuiz').onclick=()=>{s.answers=[];save();renderQuiz()};return}el('question').textContent=QUESTIONS[q][0];el('answers').innerHTML='';QUESTIONS[q].slice(1).forEach((a,i)=>{let b=document.createElement('button');b.textContent=a;b.onclick=()=>{s.answers.push(i);s.type=score();save();renderQuiz()};el('answers').append(b)})}el('qBack').onclick=()=>{s.answers.pop();s.type=score();save();renderQuiz()};
+function avatar(enemy=false){
+ let t=enemy?TYPES[3]:type(),p=enemy?{hair:2,coat:1,gear:1,face:1,color:2}:s.parts;
+ const palettes=[['#82d9e6','#314965','#a6dce7'],['#9b8cff','#292d55','#e6d4ff'],['#ff9478','#55334a','#ffcab1']];
+ let [glow,cloth,hair]=palettes[p.color||0],id=enemy?'enemy':'hero';
+ let rear=['M44 59Q26 7 83 16Q132 6 120 71L114 112L96 93L58 108L41 84Z','M37 68Q31 9 76 16Q123 7 124 73L120 134L104 119L102 60L55 72L50 126L37 121Z','M35 75Q20 16 71 12Q123 0 128 76L121 149L105 129L108 73L53 75L47 144L32 128Z'];
+ let fringe=['M43 65Q43 25 79 25Q112 25 119 62L100 49L83 65L66 48L49 73Z','M43 61Q51 20 90 25Q121 29 118 61L99 44L77 65L57 52L45 78Z','M44 63Q43 26 79 24Q111 25 117 60L106 70L93 49L76 73L58 50L48 75Z'];
+ let eye=p.face===1?'M57 79L74 76M86 76L103 79':'M57 77Q65 73 74 78M86 78Q95 73 103 77';
+ let mouth=p.face===2?'M72 101Q80 109 88 101':'M74 103Q80 105 86 103';
+ let garment=p.coat===0?'M22 205L28 140Q34 115 61 112L80 138L99 112Q127 118 133 140L140 205Z':p.coat===1?'M12 205L25 135Q36 109 62 113L80 140L98 113Q124 109 136 135L148 205Z':'M30 205L30 141Q38 116 61 114L80 137L99 114Q121 116 130 141L130 205Z';
+ return `<svg viewBox="0 0 160 205" role="img" aria-label="${t.name}のカスタムキャラクター"><defs><linearGradient id="skin-${id}" x2=".8" y2="1"><stop stop-color="#ffdfbf"/><stop offset="1" stop-color="#bb8474"/></linearGradient><linearGradient id="coat-${id}" x2="1" y2="1"><stop stop-color="${cloth}"/><stop offset="1" stop-color="#151c35"/></linearGradient></defs>
+ <circle cx="80" cy="90" r="73" fill="${glow}" opacity=".07"/><path d="${rear[p.hair]}" fill="${hair}" stroke="#1a2037" stroke-width="3"/>
+ ${p.gear===2&&s.unlocked&&!enemy?`<path d="M25 129Q12 166 7 205H153Q146 163 135 129L112 147L80 175L48 147Z" fill="${glow}" opacity=".38"/>`:''}
+ <path d="${garment}" fill="url(#coat-${id})" stroke="${glow}" stroke-width="2.5"/><path d="M59 114L80 146L101 114L92 205H68Z" fill="#111c2d" stroke="${glow}" stroke-width="1"/><path d="M52 145L69 154M108 145L91 154" stroke="${glow}" stroke-width="3"/>
+ <rect x="70" y="104" width="20" height="28" rx="8" fill="#c18b77"/><path d="M47 57Q48 30 80 29Q112 30 113 57L109 97Q100 119 80 121Q60 119 51 97Z" fill="url(#skin-${id})" stroke="#8b5f5e" stroke-width="1.5"/>
+ <path d="${fringe[p.face||0]}" fill="${hair}" stroke="#25283f" stroke-width="2"/><path d="${eye}" fill="none" stroke="#29304c" stroke-width="3" stroke-linecap="round"/><circle cx="66" cy="82" r="3" fill="#20253d"/><circle cx="94" cy="82" r="3" fill="#20253d"/><path d="${mouth}" stroke="#925a60" stroke-width="2" fill="none" stroke-linecap="round"/>
+ ${p.gear===1?`<path d="M48 75L75 72L80 83L85 72L112 75L108 91L85 90L80 86L75 90L52 91Z" fill="#1a2742" opacity=".85" stroke="${glow}" stroke-width="2.5"/>`:''}
+ ${p.gear===2&&s.unlocked&&!enemy?`<path d="M48 65Q80 42 112 65" stroke="${glow}" stroke-width="6" fill="none"/><circle cx="115" cy="64" r="6" fill="${glow}"/>`:''}
+ <circle cx="80" cy="171" r="10" fill="#15243b" stroke="${glow}" stroke-width="3"/><path d="M80 165L86 171L80 177L74 171Z" fill="${glow}"/></svg>`;
+}
+function opts(id,items,part){el(id).innerHTML='';items.forEach((v,i)=>{let b=document.createElement('button');b.textContent=v;b.className=s.parts[part]===i?'chosen':'';b.disabled=part==='gear'&&i===2&&!s.unlocked;b.onclick=()=>{s.parts[part]=i;save();renderCharacter()};el(id).append(b)})}
+function unlockCheck(){let c=s.counts;let count=[c.scan,c.attack,c.guard,c.break][s.type];let req=[5,8,5,4][s.type];if(count>=req)s.unlocked=true;return [count,req]}
+function renderCharacter(){el('className').textContent=type().name;el('classDesc').textContent=type().desc;el('level').textContent='Lv.'+(1+Math.floor(s.xp/50));el('heroArt').innerHTML=avatar();opts('hairOpts',['ショート','シャープ','ウェーブ'],'hair');opts('coatOpts',['戦術服','ローブ','軽装'],'coat');opts('gearOpts',['なし','バイザー',s.unlocked?type().gear:'🔒限定'],'gear');opts('faceOpts',['端正','鋭眼','柔和'],'face');opts('colorOpts',['標準','夜光','紅蓮'],'color');let [n,r]=unlockCheck();el('unlockInfo').textContent=type().gear+'：'+type().unlock+'（'+Math.min(n,r)+'/'+r+'）'+(s.unlocked?' · 解放済み':'');}
+function newBattle(){if(s.battle&&s.battle.challenge&&!s.battle.over){ensureSolo();s.solo.streak=0;}if(s.battle&&Array.isArray(s.battle.history)&&s.battle.history.length){s.lastReplay={history:s.battle.history.slice(-24),finalHp:s.battle.hp,finalEnemyHp:s.battle.ehp,completed:!!s.battle.over};}s.battle={hp:100,ehp:100,focus:0,efocus:0,turn:1,scan:false,log:'3APで戦術を構築。解析で敵の候補を絞り、攻撃・迎撃・防御を使い分けよう。',over:false,history:[],initiative:0,combo:0,marked:0,feint:0,awakening:false,matchIndex:(s.matchCount||0)};s.matchCount=(s.matchCount||0)+1;picked=[];save();renderBattle()}
+const CPU_STYLES=['慎重派','攻勢派','蓄積派','適応派'];
+function enemyMove(b,choices=[]){
+ const style=(b.matchIndex||0)%4,t=b.turn,h=b.history||[];
+ const recent=h.slice(-3),last=recent.length?recent[recent.length-1].player:[];
+ const attacks=recent.filter(x=>x.player.includes('attack')||x.player.includes('break')).length;
+ const counters=recent.filter(x=>x.player.includes('counter')).length;
+ const guards=recent.filter(x=>x.player.includes('guard')).length;
+ const turtles=recent.filter(x=>x.player.includes('guard')&&x.player.includes('focus')).length;
+ const reactiveHits=recent.filter(x=>x.player.includes('counter')&&x.player.includes('attack')).length;
+ const repeatedAttacks=recent.filter(x=>x.player.filter(y=>y==='attack').length>=2).length;
+ const scanLoops=recent.filter(x=>x.player.includes('focus')&&x.player.includes('scan')).length;
+ const breakLoops=recent.filter(x=>x.player.includes('break')).length;
+ const tempoStrikes=recent.filter(x=>x.player.includes('attack')&&x.player.includes('focus')).length;
+ const scanStrikes=recent.filter(x=>x.player.includes('scan')&&x.player.includes('attack')).length;
+ const feintStrikes=recent.filter(x=>x.player.includes('feint')&&x.player.includes('attack')).length;
+ // Only completed, public turns count as evidence of a guard-to-offense pattern.
+ const switchCount=h.slice(1).filter((x,i)=>{const prev=h[i].player;return prev.includes('guard')&&!prev.includes('attack')&&(x.player.includes('attack')||x.player.includes('break'))&&!x.player.includes('guard')}).length;
+ const lastGuardOnly=last.includes('guard')&&!last.includes('attack');
+ let move;
+ if(tempoStrikes>=2)move=b.efocus>=3?'break':'guard';
+ else if(switchCount>=1)move=(b.efocus>=3&&lastGuardOnly&&t%4===0)?'break':'attack';
+ else if(breakLoops>=1)move=b.focus>=3?'guard':'attack';
+ else if(scanStrikes>=2||feintStrikes>=2)move=b.efocus>=3?'break':'guard';
+ else if(scanLoops>=2)move=b.efocus>=3?'break':'attack';
+ else if(reactiveHits>=2)move=b.efocus>=3?'break':'guard';
+ else if(turtles>=2)move=b.efocus>=3?'break':'focus';
+ else if(counters>=2)move=b.efocus>=3?'break':'guard';
+ else if(repeatedAttacks>=2)move=b.efocus>=3?'break':'guard';
+ else if(attacks>=2)move=b.efocus>=3?'break':(t%3===0?'focus':'guard');
+ else if(guards>=2&&b.efocus<3)move='focus';
+ else if(b.focus>=3&&b.efocus>=3)move='break';
+ else if(b.focus>=3&&t%3===0)move='attack';
+ else if(style===0){if(b.ehp<=45&&t%3===0)move='heal';else if(b.efocus>=3&&t%3===1)move='break';else move=t%3===0?'guard':t%3===1?'focus':'attack'}
+ else if(style===1){move=b.efocus>=3?'break':t%4===0?'focus':'attack'}
+ else if(style===2){move=b.efocus>=3?'break':t%2===0?'focus':'guard'}
+ else if(last.includes('counter'))move='focus';
+ else if(last.includes('attack')||last.includes('break'))move='guard';
+ else if(b.efocus>=3)move='break';
+ else move=t%3===0?'focus':'attack';
+ // Fair-play rule: CPU may only use completed turns and public state.
+ // The current player's queued actions must not affect CPU move selection.
+ if(move==='break'&&b.efocus<3)move='attack';
+ return move;
+}
+// CPUも3APで複合行動を構築。敵の確定行動ではなく構えを公開する。
+function enemyPlan(b,choices=[]){
+ const main=enemyMove(b),style=(b.matchIndex||0)%4;
+ const history=(b.history||[]).slice(-3);
+ const defensive=history.filter(h=>h.player.includes('guard')||h.player.includes('heal')).length>=2;
+ const tempoPressure=history.filter(h=>h.player.includes('attack')&&h.player.includes('focus')).length>=2;
+ let actions=[main];
+ if(main==='break')return actions; // 突破は3AP
+ if(main==='attack'){
+   const switchThreat=(b.history||[]).slice(1).filter((x,i)=>{const prev=b.history[i].player;return prev.includes('guard')&&!prev.includes('attack')&&(x.player.includes('attack')||x.player.includes('break'))&&!x.player.includes('guard')}).length>=1;
+   actions.push(switchThreat?'focus':style===1&&b.efocus<3?'focus':defensive?'focus':'guard');
+ }else if(main==='guard'){
+   const pressure=history.filter(h=>h.player.includes('attack')||h.player.includes('break')).length;
+   const switchThreat=(b.history||[]).slice(1).filter((x,i)=>{const prev=b.history[i].player;return prev.includes('guard')&&!prev.includes('attack')&&(x.player.includes('attack')||x.player.includes('break'))&&!x.player.includes('guard')}).length>=1;
+   actions.push(pressure>=1||tempoPressure||switchThreat?'attack':'focus'); // Guard-and-strike is a tradeoff; do not respond to unseen future choices.
+ }else if(main==='focus'){
+   if(defensive&&style===1)actions.push('attack');
+   else actions.push('guard');
+ }else if(main==='heal')actions.push('guard');
+ return actions;
+}
+function cpuGuardValue(plan){return plan.includes('guard')? (plan.includes('attack')?6:plan.includes('focus')?7:11):0}
+function cpuFocusGain(plan){return plan.includes('focus')?2:0}
+function cpuAttackDamage(plan,choices,history,hasAttack,matchIndex=0){
+ const main=plan[0];
+ const tempoPressure=(history||[]).slice(-3).filter(h=>h.player.includes('attack')&&h.player.includes('focus')).length>=2;
+ const tacticalPunish=tempoPressure&&plan.includes('guard')&&plan.includes('attack')?11:0;
+ if(main==='break')return Math.max(0,enemyStrike('break',choices,history,hasAttack)+([0,-3,3,0][(matchIndex||0)%4]));
+ if(plan.includes('attack'))return Math.max(0,enemyStrike('attack',choices,history,hasAttack)-(plan.includes('guard')?7:plan.includes('focus')?4:0)+tacticalPunish+([0,-3,3,0][(matchIndex||0)%4]));
+ return 0;
+}
+function battleForecast(b){let m=enemyMove(b,[]);return m==='attack'||m==='break'?'攻勢':m==='guard'||m==='heal'?'守勢':'準備'}
+function intentOptions(b){
+ const base=enemyMove(b); 
+ const possibilities={attack:['attack','guard','focus'],break:['break','attack','guard'],guard:['guard','focus','attack'],focus:['focus','guard','attack'],heal:['heal','guard','focus']};
+ let a=(b.marked||b.scan)?[base]:[...(possibilities[base]||[base])];
+ return [...new Set(a)];
+}
+// Consecutive counters lose surprise value: -1 per counter in the last two turns (min 18).
+function counterStrength(b){return Math.max(18,20-(b.history||[]).slice(-2).filter(h=>h.player.includes('counter')).length)}
+// Stage26: defend, then counterattack. No bonus while remaining in a guard loop.
+function guardSwitchBonus(b,choices){
+ const prev=(b.history||[]).slice(-1)[0];
+ return !!(prev&&prev.player.includes('guard')&&!prev.player.includes('attack')&&
+   (choices.includes('attack')||choices.includes('break'))&&!choices.includes('guard'));
+}
+function guardedFocus(choices){return choices.includes('guard')&&choices.includes('focus')}
+function guardStrength(b,choices){
+ const recent=(b.history||[]).slice(-2).filter(h=>h.player.includes('guard')).length;
+ const fatigue=choices.includes('guard')?recent:0;
+ return Math.max(4,11-fatigue*2);
+}
+function focusGain(choices){return guardedFocus(choices)?1:2}
+function enemyStrike(move,choices,history,hasAttack){
+ const repeat=(history||[]).slice(-3).filter(h=>h.player.includes('attack')||h.player.includes('break')||h.player.includes('counter')).length;
+ let damage=move==='attack'?22:move==='break'?30:move==='guard'&&hasAttack&&repeat>=2?11:0;
+ // 突破は防御に対して貫通する。守りながら集中する行動は読まれやすい。
+ if(move==='break'&&choices.includes('guard'))damage+=4;
+ if(move==='attack'&&guardedFocus(choices))damage+=2;
+ return damage;
+}
+function previewTurn(b,choices){
+ let focus=b.focus,damage=0,guard=0,heal=0,counter=false,hasAttack=false;
+ for(const id of choices){
+  if(id==='focus')focus=Math.min(9,focus+focusGain(choices));
+  else if(id==='break'){if(focus>=3){focus-=3;damage+=43;hasAttack=true}}
+  else if(id==='attack'){damage+=((b.combo||0)>=2?12:15)-(choices.includes('counter')?4:0)-(choices.includes('guard')?3:0)-(choices.includes('scan')||choices.includes('feint')?3:0);hasAttack=true}
+  else if(id==='guard')guard+=guardStrength(b,choices);
+  else if(id==='heal')heal+=13;
+  else if(id==='counter')counter=true;
+ }
+ const plan=enemyPlan(b,choices),move=plan[0];
+ if(hasAttack)damage+=((b.combo||0)>=2?6:0)+(b.marked?2:0)+(b.feint?3:0);
+ if(guardSwitchBonus(b,choices))damage+=5;
+ if(counter&&(plan.includes('attack')||plan.includes('break'))){damage+=counterStrength(b);guard+=4;}
+ const enemyGuard=choices.includes('break')?Math.floor(cpuGuardValue(plan)/2):cpuGuardValue(plan),enemyHeal=move==='heal'?12:0;
+ const enemyAttack=cpuAttackDamage(plan,choices,b.history,hasAttack,b.matchIndex);
+ return {move,plan,focus,damage:Math.min(b.ehp+enemyHeal,Math.max(0,damage-enemyGuard)),taken:Math.min(b.hp,Math.max(0,enemyAttack-guard-heal)),rawDamage:Math.max(0,damage-enemyGuard),rawTaken:Math.max(0,enemyAttack-guard)};
+}
+function turnTactics(b){
+ const recent=(b.history||[]).slice(-3).map(h=>h.player.map(id=>ACT.find(a=>a.id===id).name).join('+'));
+ const options=intentOptions(b);
+ // 確定手は表示しない。構えから可能な反応を示すことで読み合いを成立させる。
+ const p=previewTurn(b,picked);
+ const attacks=recent.filter(x=>x.includes('攻撃')||x.includes('突破')).length;
+ return '連携 '+(b.combo||0)+'/2 ｜ 解析 '+(b.marked?'有':'無')+' ｜ フェイント '+(b.feint?'準備済':'無')+
+ '<br>CPU性格：'+CPU_STYLES[(b.matchIndex||0)%4]+' ｜ 敵集中 '+b.efocus+' ｜ CPUも最大3AP（攻撃＋防御時は威力低下）'+
+ '<div class="muted">敵の候補：'+options.map(id=>ACT.find(a=>a.id===id).name).join('／')+
+ ' ｜ '+(picked.includes('counter')?'迎撃は敵の攻撃・突破時のみ成立':'敵の構えを読んで選択')+' ｜ '+((b.marked||b.scan)?'解析済み':'構えは候補表示')+(b.history.slice(-3).filter(h=>h.player.includes('attack')&&h.player.includes('focus')).length>=2?' ｜ 攻撃＋集中の連打を読まれた':'')+' ｜ '+(guardSwitchBonus(b,picked)?'切り返し+5発動':(b.history.length&&b.history[b.history.length-1].player.includes('guard')?'防御後に攻撃（防御なし）で切り返し+5':'切り返し待機'))+' ｜ 行動後集中 '+p.focus+(picked.includes('guard')?' ｜ 防御軽減 '+guardStrength(b,picked):'')+'<br>直近の自分：'+(recent.join(' → ')||'なし')+
+ (attacks>=2?' ｜ 連打警戒中':'')+'</div>';
+}
+function legalActions(actions,startingFocus){
+ if(!Array.isArray(actions)||!actions.length||actions.length>3)return false;
+ let ap=0,focus=startingFocus;
+ if(!Number.isInteger(focus)||focus<0||focus>9)return false;
+ for(const id of actions){
+  const action=ACT.find(a=>a.id===id);
+  if(!action)return false;
+  ap+=action.ap;
+  if(ap>3)return false;
+  if(id==='focus')focus=Math.min(9,focus+focusGain(actions));
+  if(id==='break'){if(focus<3)return false;focus-=3;}
+ }
+ return true;
+}
+function selectedCost(){return picked.reduce((n,id)=>n+(ACT.find(a=>a.id===id)||{ap:99}).ap,0)}function selectedFocus(){let f=s.battle.focus;for(const id of picked){if(id==='focus')f=Math.min(9,f+focusGain(picked));if(id==='break')f-=3;}return f}
+function renderBattle(){if(!s.battle)newBattle();let b=s.battle;el('pHp').textContent=b.hp+'/100';el('eHp').textContent=b.ehp+'/100';el('pBar').style.width=b.hp+'%';el('eBar').style.width=b.ehp+'%';el('turnLabel').textContent='TURN '+b.turn;el('battleHero').innerHTML=avatar();el('battleEnemy').innerHTML=avatar(true);el('resources').textContent='AP '+selectedCost()+'/3 · 集中 '+b.focus+' · 次 '+Math.max(0,selectedFocus());let em=enemyMove(b);el('enemyIntent').textContent='敵の構え：'+battleForecast(b)+(intentOptions(b).length>1?'（候補）':'');el('battleHint').textContent='防御後に攻撃へ切り替えると+5。ただし同じ切り返しを繰り返すと敵に読まれる。';el('tacticalPanel').innerHTML=turnTactics(b);el('battleLog').textContent=b.log;el('battleActions').innerHTML='';ACT.forEach(a=>{let btn=document.createElement('button');btn.className=picked.includes(a.id)?'selected':'';btn.innerHTML='<b>'+a.name+' · '+a.ap+'AP</b><small>'+a.detail+'</small>';btn.disabled=b.over||selectedCost()+a.ap>3||(a.id==='break'&&selectedFocus()<3);btn.onclick=()=>{picked.push(a.id);renderBattle()};el('battleActions').append(btn)});el('commit').disabled=b.over||!picked.length;el('commit').textContent=b.over?'決着済み':'行動を実行';el('undo').disabled=!picked.length}
+function battleOutcome(b){if(b.hp<=0&&b.ehp<=0)return 'draw';if(b.ehp<=0)return 'win';if(b.hp<=0)return 'loss';if(b.turn>24)return b.hp>b.ehp?'win':b.hp<b.ehp?'loss':'draw';return null}
+function resolve(){let b=s.battle;if(!b||b.over||!legalActions(picked,b.focus))return;let guard=0,dmg=0,heal=0,lines=[];let oldCombo=b.combo||0,oldMark=b.marked||0,oldFeint=b.feint||0;let hasAttack=picked.includes('attack');let nextFeint=picked.includes('feint')?1:0;let counter=picked.includes('counter');let scan=picked.includes('scan');const cpuPlan=enemyPlan(b,picked),move=cpuPlan[0];for(let id of picked){s.counts[id]=(s.counts[id]||0)+1;if(id==='focus')b.focus=Math.min(9,b.focus+focusGain(picked));if(id==='guard')guard+=guardStrength(b,picked);if(id==='heal')heal+=13;if(id==='attack')dmg+=((oldCombo>=2)?12:15)-(picked.includes('counter')?4:0)-(picked.includes('guard')?3:0)-(picked.includes('scan')||picked.includes('feint')?3:0);if(id==='break'){if(b.focus<3)continue;b.focus-=3;dmg+=43;hasAttack=true}if(id==='scan')b.scan=true}let edmg=cpuAttackDamage(cpuPlan,picked,b.history,hasAttack,b.matchIndex),eguard=picked.includes('break')?Math.floor(cpuGuardValue(cpuPlan)/2):cpuGuardValue(cpuPlan),eheal=move==='heal'?12:0;if(move==='break')b.efocus=Math.max(0,b.efocus-3);b.efocus=Math.min(9,b.efocus+cpuFocusGain(cpuPlan));if(hasAttack){let bonus=(oldCombo>=2?6:0)+(oldMark?2:0)+(oldFeint?3:0);dmg+=bonus;if(bonus)lines.push('連携・解析・フェイント補正 +'+bonus)}if(guardSwitchBonus(b,picked)){dmg+=5;lines.push('防御からの切り返し +5')}if(counter&&(cpuPlan.includes('attack')||cpuPlan.includes('break'))){dmg+=counterStrength(b);guard+=4;lines.push('迎撃成功 +'+counterStrength(b)+' / 被害軽減4')}b.combo=hasAttack?Math.min(2,oldCombo+1):0;b.marked=scan?1:0;b.scan=scan;b.feint=nextFeint;b.hp=Math.max(0,Math.min(100,b.hp+heal-Math.max(0,edmg-guard)));b.ehp=Math.max(0,Math.min(100,b.ehp+eheal-Math.max(0,dmg-eguard)));lines.push('自分 '+picked.map(x=>ACT.find(a=>a.id===x).name).join('＋')+' / CPU '+cpuPlan.map(id=>ACT.find(a=>a.id===id).name).join('＋'));lines.push('与ダメージ '+Math.max(0,dmg-eguard)+' / 被ダメージ '+Math.max(0,edmg-guard));b.history=b.history||[];b.history.push({turn:b.turn,player:[...picked],cpu:move,cpuActions:[...cpuPlan],dealt:Math.max(0,dmg-eguard),taken:Math.max(0,edmg-guard)});b.history=b.history.slice(-24);b.initiative=Math.max(-3,Math.min(3,(b.initiative||0)+(dmg>edmg?1:dmg<edmg?-1:0)));b.log=lines.join('　');b.turn++;picked=[];unlockCheck();if(b.hp===0||b.ehp===0||b.turn>24){b.over=true;b.outcome=battleOutcome(b);if(b.outcome==='win'){s.wins++;s.xp+=30}else if(b.outcome==='loss'){s.losses++;s.xp+=10}else{s.draws=(s.draws||0)+1;s.xp+=15}if(b.challenge){ensureSolo();s.solo.streak=b.outcome==='win'?s.solo.streak+1:0;s.solo.best=Math.max(s.solo.best,s.solo.streak);if(s.solo.streak>=3&&!s.solo.medals.includes('triple'))s.solo.medals.push('triple')}s.lastReplay={history:b.history.slice(-24),finalHp:b.hp,finalEnemyHp:b.ehp,completed:true,outcome:b.outcome};b.log+=' · '+(b.outcome==='win'?'勝利！ EXP+30':b.outcome==='draw'?'引分 EXP+15':'敗北 EXP+10')}save();renderBattle()}
+el('commit').onclick=resolve;el('undo').onclick=()=>{picked=[];renderBattle()};el('restart').onclick=()=>{if(confirm('新しい対戦を開始しますか？'))newBattle()};
+const SKILL_PATHS=[{name:'観測者',detail:'解析・相手の行動記録を極める',goal:'解析を10回使用',key:'scan'},{name:'連撃者',detail:'連続攻撃を極める',goal:'攻撃を10回使用',key:'attack'},{name:'守護者',detail:'防御から反撃を極める',goal:'防御を10回使用',key:'guard'}];
+function skillRank(i){let count=Number(s.counts[SKILL_PATHS[i].key]||0);return Math.min(3,Math.floor(count/5))}
+function renderSkills(){if(!Number.isInteger(s.skillPath)||s.skillPath<0||s.skillPath>2)s.skillPath=0;if(!Array.isArray(s.skillBuilds))s.skillBuilds=[];let lvl=1+Math.floor(s.xp/50);el('skillSummary').textContent='Lv.'+lvl+' ｜選択：'+SKILL_PATHS[s.skillPath].name+' ｜熟練 '+skillRank(s.skillPath)+'/3 ｜'+SKILL_PATHS[s.skillPath].goal+'（戦闘能力への数値補正なし）';el('skillChoices').innerHTML='';SKILL_PATHS.forEach((path,i)=>{let b=document.createElement('button');b.textContent=path.name+' '+skillRank(i)+'/3';b.className=i===s.skillPath?'selected':'';b.title=path.detail;b.onclick=()=>{s.skillPath=i;save();renderSkills()};el('skillChoices').append(b)});el('skillBuilds').innerHTML='';s.skillBuilds.forEach((i,n)=>{let b=document.createElement('button');b.textContent='保存'+(n+1)+' '+SKILL_PATHS[i].name;b.onclick=()=>{s.skillPath=i;save();renderSkills()};el('skillBuilds').append(b)})}
+function renderRecords(){renderSkills();renderReplay();el('stats').textContent='勝利 '+s.wins+' / 引分 '+s.draws+' / 敗北 '+s.losses+' / EXP '+s.xp+' / Lv.'+(1+Math.floor(s.xp/50));el('achievements').textContent='CPU戦 '+(s.matchCount||0)+'回 · 称号：'+(s.wins>=10?'百戦の戦術家':s.wins>=3?'駆け出し戦術家':'見習い戦術家')+'　限定パーツ：'+(s.unlocked?'解放':'未解放');el('presets').innerHTML='';s.presets.forEach((p,i)=>{let b=document.createElement('button');b.className='btn secondary';b.textContent=(i+1)+'. '+p.map(x=>ACT.find(a=>a.id===x).name).join('＋');b.onclick=()=>{if(!s.battle||s.battle.over)newBattle();picked=legalActions(p,s.battle.focus)?[...p]:[];show('battle')};el('presets').append(b)});el('savePreset').disabled=!picked.length;el('storageStatus').textContent='保存先：このブラウザの端末内ストレージ（利用できる場合）'}
+el('skillReset').onclick=()=>{s.skillPath=0;save();renderRecords()};el('skillSave').onclick=()=>{if(!Array.isArray(s.skillBuilds))s.skillBuilds=[];s.skillBuilds=[s.skillPath,...s.skillBuilds.filter(x=>x!==s.skillPath)].slice(0,3);save();renderRecords()};el('savePreset').onclick=()=>{if(!picked.length)return;s.presets.unshift([...picked]);s.presets=s.presets.slice(0,4);save();renderRecords()};el('export').onclick=()=>{let blob=new Blob([JSON.stringify(s,null,2)],{type:'application/json'});let url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='persona-clash-save.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000)};el('import').onclick=()=>el('importFile').click();el('importFile').onchange=async e=>{try{let f=e.target.files[0];if(!f)return;if(f.size>200000)throw Error('ファイルが大きすぎます（上限200KB）');let v=JSON.parse(await f.text());importSave(v);render();alert('セーブを読み込みました。対戦途中の状態も復元されます。')}catch(err){alert('読み込み失敗：'+err.message)}finally{e.target.value=''}};el('reset').onclick=()=>{if(confirm('全記録を消去しますか？')){s=initial();picked=[];save();show('diagnosis')}};
+
+const PUZZLES=[{q:'敵の次の攻撃は17。自分のHPは14。1APで生存するには？',a:['攻撃','防御','解析','フェイント'],correct:1,why:'初回防御は11軽減。17−11=6なのでHP8で生存。'},{q:'集中力3、敵HP30、使用可能AP3。確実に倒せる行動は？',a:['突破','攻撃','集中','防御'],correct:0,why:'突破は集中3と3APを使い、43ダメージ。'},{q:'次ターンに攻撃する予定。1APで追加ダメージを仕込むなら？',a:['防御','解析','回復','突破'],correct:1,why:'解析による印は次ターンの攻撃に+2。'}];
+function ensureSolo(){if(!s.solo||typeof s.solo!=='object')s.solo={puzzles:[],streak:0,best:0,medals:[]};if(!Array.isArray(s.solo.puzzles))s.solo.puzzles=[];if(!Array.isArray(s.solo.medals))s.solo.medals=[];s.solo.streak=Math.max(0,Math.min(999,Number(s.solo.streak)||0));s.solo.best=Math.max(0,Math.min(999,Number(s.solo.best)||0));}
+let collectionPage=0;function renderSolo(){ensureSolo();let next=PUZZLES.findIndex((p,i)=>!s.solo.puzzles.includes(i));let q=PUZZLES[next];el('puzzleInfo').textContent=q?('問題 '+(next+1)+'/3：'+q.q):'全問クリア！ 何度でも復習できます。';el('puzzleChoices').innerHTML='';if(q)q.a.forEach((a,i)=>{let b=document.createElement('button');b.textContent=a;b.onclick=()=>{if(i===q.correct){s.solo.puzzles.push(next);el('puzzleFeedback').textContent='正解！ '+q.why;save();renderSolo()}else{el('puzzleFeedback').textContent='不正解。行動コストと確定効果を確認しよう。'}};el('puzzleChoices').append(b)});el('challengeInfo').textContent='現在 '+s.solo.streak+'連勝 / 最高 '+s.solo.best+'連勝。3連勝で限定エンブレム。';let pageSize=window.matchMedia&&window.matchMedia('(max-height:620px)').matches?1:2;collectionPage=Math.min(collectionPage,Math.ceil(6/pageSize)-1);let all=[['予測ゴーグル','分析型で解析5回'],['閃光バイザー','直感型で攻撃8回'],['共鳴マント','共感型で防御5回'],['不屈の仮面','意志型で突破4回'],['戦術学徒バッジ','パズル3問正解'],['連勝エンブレム','CPUチャレンジ3連勝']];el('collectionInfo').textContent='性格専用装備は該当性格でのみ解放。戦闘性能への補正なし。';el('collectionItems').innerHTML='';all.slice(collectionPage*pageSize,collectionPage*pageSize+pageSize).forEach((x,j)=>{let i=collectionPage*pageSize+j;let owned=i<4?(s.type===i&&s.unlocked):i===4?s.solo.puzzles.length===3:s.solo.medals.includes('triple');let d=document.createElement('div');d.className='notice';d.textContent=(owned?'◆ 獲得 ':'◇ 未獲得 ')+x[0]+' · '+x[1];el('collectionItems').append(d)});el('collectionPage').textContent=(collectionPage+1)+'/'+Math.ceil(all.length/pageSize);el('collectionPrev').disabled=collectionPage===0;el('collectionNext').disabled=collectionPage===Math.ceil(all.length/pageSize)-1}
+el('collectionPrev').onclick=()=>{collectionPage=Math.max(0,collectionPage-1);renderSolo()};el('collectionNext').onclick=()=>{collectionPage=Math.min(window.matchMedia&&window.matchMedia('(max-height:620px)').matches?5:2,collectionPage+1);renderSolo()};
+el('challengeStart').onclick=()=>{ensureSolo();newBattle();s.battle.challenge=true;s.battle.log='チャレンジ '+(s.solo.streak+1)+'戦目。3連勝でエンブレム獲得。';save();show('battle')};el('challengeReset').onclick=()=>{ensureSolo();s.solo.streak=0;save();renderSolo()};
+
+let replayIndex=0;
+function replayData(){let r=s.lastReplay;if(!r||!Array.isArray(r.history))return [];return r.history.filter(h=>h&&Number.isInteger(h.turn)&&Array.isArray(h.player)&&typeof h.cpu==='string').slice(-24)}
+function renderReplay(){let hs=replayData();replayIndex=Math.max(0,Math.min(replayIndex,Math.max(0,hs.length-1)));el('replaySummary').textContent=hs.length?'保存済み '+hs.length+'ターン · '+(s.lastReplay.outcome==='win'?'勝利':s.lastReplay.outcome==='loss'?'敗北':s.lastReplay.outcome==='draw'?'引分':'結果未記録')+' · 自分 '+s.lastReplay.finalHp+'HP / 敵 '+s.lastReplay.finalEnemyHp+'HP':'記録は対戦後に保存されます';el('replayPosition').textContent=hs.length?(replayIndex+1)+'/'+hs.length:'0/0';let h=hs[replayIndex];el('replayDetail').textContent=h?'TURN '+h.turn+'｜自分：'+h.player.map(id=>{let a=ACT.find(a=>a.id===id);return a?a.name:'不明'}).join('＋')+'｜敵：'+(Array.isArray(h.cpuActions)?h.cpuActions:[h.cpu]).map(id=>(ACT.find(a=>a.id===id)||{name:'不明'}).name).join('＋')+'｜与 '+h.dealt+' / 被 '+h.taken:'対戦をプレイすると、ここで行動を振り返れます';el('replayPrev').disabled=!hs.length||replayIndex===0;el('replayNext').disabled=!hs.length||replayIndex===hs.length-1;el('replayExport').disabled=!hs.length}
+el('replayPrev').onclick=()=>{replayIndex--;renderReplay()};el('replayNext').onclick=()=>{replayIndex++;renderReplay()};
+el('replayExport').onclick=()=>{let data={format:'persona-clash-replay-v1',...s.lastReplay};let blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='persona-clash-replay.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000)};
+
+let recordPage=0;
+function renderRecordPage(){const panels=[...document.querySelectorAll('#records>.panel')];if(!panels.length)return;recordPage=Math.min(recordPage,panels.length-1);panels.forEach((p,i)=>p.classList.toggle('recordActive',i===recordPage));el('recordPageLabel').textContent='記録 '+(recordPage+1)+' / '+panels.length;el('recordPrev').disabled=recordPage===0;el('recordNext').disabled=recordPage===panels.length-1;}
+el('recordPrev').onclick=()=>{recordPage--;renderRecordPage()};el('recordNext').onclick=()=>{recordPage++;renderRecordPage()};
+function render(){if(tab==='records')renderRecordPage();if(tab==='solo')renderSolo();if(tab==='diagnosis')renderQuiz();if(tab==='character')renderCharacter();if(tab==='battle')renderBattle();if(tab==='records')renderRecords()};ensureSolo();show(completed()?'battle':'diagnosis');
+
+</script><script>
+/* Stage 30: progressive offline install; game remains usable when SW is unsupported. */
+if ('serviceWorker' in navigator && (location.protocol === 'https:' || location.hostname === 'localhost')) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('./sw.js', {scope:'./'}).catch(function (err) {
+      console.warn('オフライン登録は利用できません:', err && err.message);
+    });
+  });
+}
+</script></body></html>
