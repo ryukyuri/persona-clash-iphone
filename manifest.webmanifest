@@ -1,0 +1,21 @@
+{
+  "name": "PERSONA CLASH — TACTICAL MIND",
+  "short_name": "PERSONA CLASH",
+  "description": "オフラインで遊べる性格×戦術バトル",
+  "id": "./",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#0d1426",
+  "theme_color": "#0d1426",
+  "orientation": "portrait",
+  "lang": "ja",
+  "icons": [
+    {
+      "src": "./icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}
